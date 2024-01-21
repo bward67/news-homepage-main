@@ -1,0 +1,309 @@
+:root {
+  --clr-soft-orange: hsl(35, 77%, 62%);
+  --clr-soft-red: hsl(5, 85%, 63%);
+
+  --clr-off-white: hsl(36, 100%, 99%);
+  --clr-grayish-blue: hsl(233, 8%, 79%);
+  --clr-dark-grayish-blue: hsl(236, 13%, 42%);
+  --clr-very-dark-blue: hsl(240, 100%, 5%);
+
+  --fw-400: 400;
+  --fw-700: 700;
+  --fw-800: 800;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  padding: 1rem;
+}
+.nav {
+  position: relative;
+  height: 70px;
+  margin-top: 1rem;
+}
+.nav-icons .hamburger-icon,
+.nav-icons .close-icon {
+  position: fixed;
+  top: 1.5rem;
+  right: 1rem;
+}
+.nav-icons .close-icon {
+  visibility: hidden;
+}
+.nav-icons .hamburger-icon {
+  visibility: visible;
+}
+img {
+  max-width: 100%;
+}
+.links ul {
+  list-style-type: none;
+}
+.links ul li {
+  margin-bottom: 2rem;
+}
+a {
+  text-decoration: none;
+  color: var(--clr-dark-grayish-blue);
+}
+a:hover {
+  color: var(--clr-soft-red);
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: var(--fw-800);
+  line-height: 1;
+  margin-block: 1rem;
+}
+p {
+  color: var(--clr-dark-grayish-blue);
+  line-height: 1.6;
+}
+button {
+  cursor: pointer;
+  padding: 1rem 2.5rem;
+  background-color: var(--clr-soft-red);
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--clr-off-white);
+  letter-spacing: 3px;
+  border: none;
+  margin-block: 1.5rem 3.5rem;
+}
+.new-box {
+  background-color: var(--clr-very-dark-blue);
+  color: var(--clr-off-white);
+  padding: 1rem;
+  margin-bottom: 4rem;
+}
+.new-box h2 {
+  color: var(--clr-soft-orange);
+}
+.new-box h3 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+}
+.new-box p {
+  padding-block: 0.5rem 2rem;
+  border-bottom: 1px solid var(--clr-grayish-blue);
+  font-size: 1rem;
+  color: var(--clr-grayish-blue);
+}
+.new-box p:last-child {
+  border: none;
+}
+.bottom-box-1,
+.bottom-box-2,
+.bottom-box-3 {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.bottom-box-1 img,
+.bottom-box-2 img,
+.bottom-box-3 img {
+  width: 30%;
+}
+.bottom-box-1 h2,
+.bottom-box-2 h2,
+.bottom-box-3 h2 {
+  font-weight: var(--fw-700);
+  color: var(--clr-grayish-blue);
+  font-size: 2rem;
+}
+.bottom-box-1 h4,
+.bottom-box-2 h4,
+.bottom-box-3 h4 {
+  margin-block: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: var(--fw-800);
+}
+.bottom-box-1 h4:hover,
+.bottom-box-2 h4:hover,
+.bottom-box-3 h4:hover {
+  color: var(--clr-soft-red);
+}
+.bottom-box-1 p,
+.bottom-box-2 p,
+.bottom-box-3 p {
+  color: var(--clr-dark-grayish-blue);
+  font-size: 1rem;
+}
+.links {
+  visibility: hidden;
+  /*transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;*/
+}
+/*For the toggle nav*/
+.links.active {
+  padding: 10rem 0 0 1rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 68.5vw;
+  height: 100vh;
+  transition: 0.6 ease-in-out; /*is this working?*/
+  background-color: #ffffff;
+  visibility: visible;
+  /*transform: translateX(0);*/
+}
+.close-icon.active {
+  visibility: visible;
+  z-index: 1;
+}
+.hamburger-icon.active {
+  visibility: hidden;
+}
+.container.active {
+  background-color: hsla(236, 13%, 42%, 0.5);
+}
+
+@media (min-width: 568px) {
+  .container {
+    padding: 0px;
+    max-width: 800px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /*so that the columns are all the exact same width*/
+    grid-template-rows: 80px 100px 100px 130px 150px;
+    grid-template-areas:
+      "nav nav nav"
+      "hero hero new-box"
+      "hero hero new-box"
+      "h1 read-more-box new-box"
+      "bottom-box-1 bottom-box-2 bottom-box-3";
+  }
+  .nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  ul li {
+    margin: 0px !important; /*I finally figured where the
+    margin-bottom was coming from which was not allowing
+    my links to center within the nav bax*/
+  }
+
+  .hero {
+    grid-area: hero;
+  }
+  .new-box {
+    grid-area: new-box;
+    padding: 1rem 1rem 0 1rem;
+    /*margin-bottom: 0;*/
+  }
+  h1 {
+    grid-area: h1;
+    margin-block: 0;
+    font-size: 2.5rem;
+    padding: 0;
+  }
+
+  .read-more-box {
+    grid-area: read-more-box;
+    margin-bottom: 0;
+  }
+  .new-box h2 {
+    font-size: 1.8rem;
+  }
+  .new-box h3 {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+  .new-box p {
+    font-size: 0.7rem;
+    padding-bottom: 1rem;
+  }
+  .new-box {
+    margin-bottom: 0;
+  }
+  .new-box p:last-child {
+    padding-bottom: 1.5rem;
+  }
+  .read-more-box p,
+  .bottom-box-1 p,
+  .bottom-box-2 p,
+  .bottom-box-3 p {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.6rem;
+    margin-block: 1.5rem 1.5rem;
+  }
+  .bottom-box-1 {
+    grid-area: bottom-box-1;
+    margin-top: 2.3rem;
+  }
+
+  .bottom-box-2 {
+    grid-area: bottom-box-2;
+    margin-top: 2.3rem;
+  }
+  .bottom-box-3 {
+    grid-area: bottom-box-3;
+    margin-top: 2.3rem;
+  }
+  .bottom-box-1 img,
+  .bottom-box-2 img,
+  .bottom-box-3 img {
+    width: 42%;
+    height: 120%;
+  }
+  .bottom-box-1 h4,
+  .bottom-box-2 h4,
+  .bottom-box-3 h4 {
+    font-size: 0.75rem;
+  }
+  .bottom-box-1 h2,
+  .bottom-box-2 h2,
+  .bottom-box-3 h2 {
+    font-size: 1.6rem;
+  }
+  .bottom-box-1 p,
+  .bottom-box-2 p,
+  .bottom-box-3 p {
+    font-size: 0.68rem;
+    padding-bottom: 0.7rem;
+    line-height: 1.7;
+  }
+
+  ul {
+    display: flex;
+    gap: 1rem;
+    margin-block: auto;
+  }
+  a {
+    display: flex;
+    align-items: center;
+  }
+  .hero img {
+    min-height: 100%; /*this made it fit into the grid
+    area - without it there was a space at the bottom*/
+  }
+  .nav-icons .hamburger-icon,
+  .nav-icons .close-icon {
+    visibility: hidden;
+  }
+  .links {
+    visibility: visible;
+  }
+}
